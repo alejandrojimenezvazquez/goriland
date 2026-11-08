@@ -1,0 +1,46 @@
+<!doctype html>
+<!--
+  GORILAND · histórico de competiciones del grupo
+  ------------------------------------------------------------------
+  Web de una sola página (sin compilar), en tres archivos: index.html
+  (estructura), style.css (estilos) y scripts.js (lógica).
+  Competiciones: Cortijos League (fútbol) y GP Goriland (karts).
+
+  Cómo funciona
+  - Los datos viven en Supabase (tablas members y events, como JSON).
+  - Cualquiera puede ver la web; solo el administrador (login en la
+    pestaña Admin) puede crear, editar o borrar datos.
+  - Los escudos y logos se guardan en el bucket «escudos» de Storage.
+
+  Puesta en marcha
+  1. Ejecuta supabase.sql, storage.sql y storage_logos.sql en Supabase
+     (cambiando TU_EMAIL por el email del administrador).
+  2. Comprueba SUPABASE_URL y SUPABASE_ANON_KEY al principio del script.
+  3. Sube index.html, style.css y scripts.js juntos (misma carpeta) a un
+     hosting estático.
+
+  Estructura del script (de arriba abajo)
+  configuración y estado · utilidades · equipos de F1 · competiciones
+  y logos · tiempos y fechas · cálculo de puntos · componentes · vistas
+  · panel Admin · Supabase · acciones del admin · pintado y arranque.
+-->
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>GORILAND</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logogoriland.png">
+</head>
+
+<body><!-- Aquí se pinta toda la aplicación (ver render()) -->
+  <div id="app"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="scripts.js"></script>
+</body>
+
+</html>
