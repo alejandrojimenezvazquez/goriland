@@ -2,8 +2,8 @@
 <!--
   GORILAND · histórico de competiciones del grupo
   ------------------------------------------------------------------
-  Web de una sola página (sin compilar), en tres archivos: index.html
-  (estructura), style.css (estilos) y scripts.js (lógica).
+  Web de una sola página (sin compilar), dividida en archivos:
+  index.html (estructura), style.css (estilos) y la carpeta js/ (lógica).
   Competiciones: Cortijos League (fútbol) y GP Goriland (karts).
 
   Cómo funciona
@@ -15,14 +15,21 @@
   Puesta en marcha
   1. Ejecuta supabase.sql, storage.sql y storage_logos.sql en Supabase
      (cambiando TU_EMAIL por el email del administrador).
-  2. Comprueba SUPABASE_URL y SUPABASE_ANON_KEY al principio del script.
-  3. Sube index.html, style.css y scripts.js juntos (misma carpeta) a un
-     hosting estático.
+  2. Comprueba SUPABASE_URL y SUPABASE_ANON_KEY al principio de js/config.js.
+  3. Sube index.html, style.css y la carpeta js/ (con todo su contenido)
+     a un hosting estático.
 
-  Estructura del script (de arriba abajo)
-  configuración y estado · utilidades · equipos de F1 · competiciones
-  y logos · tiempos y fechas · cálculo de puntos · componentes · vistas
-  · panel Admin · Supabase · acciones del admin · pintado y arranque.
+  Estructura del código (orden de carga; son scripts clásicos que
+  comparten variables globales):
+  js/config.js      conexión a Supabase, equipos de F1, textos fijos
+  js/state.js       estado de la aplicación y cachés
+  js/utils.js       utilidades: HTML seguro, tiempos, fechas, orden
+  js/stats.js       cálculo de puntos y rankings (sin HTML)
+  js/components.js  logos, tablas, tarjetas y gráfico de vueltas
+  js/views.js       pestañas y ventanas de detalle
+  js/admin.js       panel de administración (formularios y acciones)
+  js/db.js          acceso a Supabase: login, carga, guardado y borrado
+  js/main.js        pintado general y arranque
 -->
 <html lang="es">
 
@@ -39,8 +46,16 @@
 
 <body><!-- Aquí se pinta toda la aplicación (ver render()) -->
   <div id="app"></div>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
-  <script src="scripts.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script defer src="js/config.js"></script>
+<script defer src="js/state.js"></script>
+<script defer src="js/utils.js"></script>
+<script defer src="js/stats.js"></script>
+<script defer src="js/components.js"></script>
+<script defer src="js/views.js"></script>
+<script defer src="js/admin.js"></script>
+<script defer src="js/db.js"></script>
+<script defer src="js/main.js"></script>
 </body>
 
 </html>
