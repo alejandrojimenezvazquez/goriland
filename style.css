@@ -600,3 +600,166 @@ td img {
 th.l, td.l {
   text-align: left;
 }
+
+
+/* ==========================================================================
+   VERSIÓN MÓVIL
+   Pantallas de hasta 700 px: menú en una barra fija inferior, ventanas de
+   detalle a pantalla completa, tablas compactas y formularios cómodos.
+   ========================================================================== */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  -webkit-tap-highlight-color: transparent;
+}
+button, select, input {
+  touch-action: manipulation;
+}
+
+@media (max-width: 700px) {
+  body.modal-open {
+    overflow: hidden;
+  }
+
+  /* Cabecera: solo el título; el menú pasa a la barra inferior */
+  header {
+    padding: 14px 16px 12px;
+  }
+  h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    display: flex;
+    gap: 0;
+    overflow: visible;
+    background: var(--bg);
+    border-top: 1px solid var(--ln);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  nav button {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 2px 12px;
+    font-size: 12px;
+    text-align: center;
+    border-bottom: 0;
+    border-top: 3px solid transparent;
+  }
+  nav button.on {
+    border-top-color: var(--ac);
+  }
+  main {
+    padding: 4px 14px calc(84px + env(safe-area-inset-bottom, 0px));
+  }
+  h2 {
+    margin: 22px 0 10px;
+  }
+
+  /* Tarjetas e integrantes (2 columnas) */
+  .card {
+    padding: 12px;
+  }
+  .g3.gm {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  /* Tablas compactas: el equipo se reduce a su logo y los motes van bajo el nombre */
+  th, td {
+    padding: 8px 5px;
+    font-size: 13px;
+  }
+  th {
+    font-size: 10px;
+    letter-spacing: .04em;
+    white-space: normal;
+  }
+  td.l {
+    white-space: normal;
+  }
+  td .nk {
+    display: block;
+  }
+  .ttn {
+    display: none;
+  }
+
+  /* Rankings: las columnas # y Nombre se quedan fijas al desplazar la tabla */
+  .rkt th:first-child, .rkt td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    width: 30px;
+    min-width: 30px;
+    padding-left: 8px;
+    padding-right: 4px;
+    background: var(--bg);
+  }
+  .rkt th:nth-child(2), .rkt td:nth-child(2) {
+    position: sticky;
+    left: 30px;
+    z-index: 1;
+    background: var(--bg);
+    box-shadow: 6px 0 6px -6px rgba(0, 0, 0, .25);
+  }
+
+  /* Ventanas de detalle a pantalla completa */
+  .ov {
+    padding: 0;
+  }
+  .md {
+    min-height: 100%;
+    max-width: none;
+    border-radius: 0;
+    padding: 16px 14px calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+  .x {
+    position: fixed;
+    top: calc(8px + env(safe-area-inset-top, 0px));
+    right: 10px;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--ln);
+    border-radius: 50%;
+    background: var(--cd);
+    font-size: 16px;
+  }
+
+  /* Tiempos por vuelta: lista en dos columnas y gráfico a todo el ancho */
+  .lapbox {
+    gap: 8px;
+  }
+  .lapbox .ll {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 16px;
+    width: 100%;
+    max-height: none;
+  }
+  .lapbox svg {
+    flex-basis: 100%;
+  }
+
+  /* Formularios: 16 px evita el zoom automático de iOS al enfocar; campos flexibles y botones más altos */
+  input, select, textarea {
+    font-size: 16px;
+  }
+  .btn {
+    padding: 10px 14px;
+  }
+  .fg > select, .fg > input:not([type=checkbox]):not([type=color]):not([type=file]):not([type=number]) {
+    flex: 1 1 140px;
+    min-width: 0;
+  }
+  .lapgrid input {
+    width: 92px;
+  }
+}

@@ -10,7 +10,7 @@ function view(S) {
     if (tab == 'home')
         return `<h2>Bienvenido</h2><p class=intro>GORILAND somos un grupo de colegas de Alhaurín de la Torre. En esta página podéis consultar el histórico de nuestras competiciones: la Cortijos League, el GP Goriland y lo que se nos ocurra.</p>${NX()}<h2>Últimos resultados</h2><div class=g2>${evs().filter(e => e.done).slice(0, 2).map(evCard).join('') || '<p class=mu>Aún no hay resultados.</p>'}</div><h2>Top 5 ranking</h2><div class=card>${rankRows(S, 'g').slice(0, 5).map((x, i) => `<div class=row><span class=n>${i + 1}</span><span style="flex:1">${nm(x.m)}</span><b>${x.s.pts} pts</b></div>`).join('')}</div>`;
     if (tab == 'mem')
-        return `<h2>Integrantes</h2><div class=g3>${D.members.filter(m => !m.guest).map(m => `<div class="card click" onclick="openM('${m.id}')"><h3>${esc(m.name)}</h3><div class=mu>“${esc(m.nick)}” · ${age(m)} años</div><p style="margin:10px 0 0"><b>${S[m.id]?.ev.length || 0}</b> <span class=mu>competiciones</span></p></div>`).join('')}</div>`;
+        return `<h2>Integrantes</h2><div class="g3 gm">${D.members.filter(m => !m.guest).map(m => `<div class="card click" onclick="openM('${m.id}')"><h3>${esc(m.name)}</h3><div class=mu>“${esc(m.nick)}” · ${age(m)} años</div><p style="margin:10px 0 0"><b>${S[m.id]?.ev.length || 0}</b> <span class=mu>competiciones</span></p></div>`).join('')}</div>`;
     if (tab == 'ev')
         return evView();
     if (tab == 'rk') {

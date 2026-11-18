@@ -19,6 +19,7 @@ sb.auth.onAuthStateChange((_, x) => {
  * Pinta cabecera, pestaña activa y ventana abierta.
  */
 function render() {
+    document.body.classList.toggle('modal-open', !!modal);
     const T = [['home', 'Inicio'], ['mem', 'Integrantes'], ['ev', 'Eventos'], ['rk', 'Ranking']];
     T.push(['adm', 'Admin']);
     root.innerHTML = `<header><h1>GORILAND</h1><nav>${T.map(([k, l]) => `<button class="${tab == k ? 'on' : ''}" onclick="tab='${k}';render()">${l}</button>`).join('')}</nav></header><main>${view(stats())}</main>${modal ? `<div class=ov onclick="modal='';render()"><div class=md onclick="event.stopPropagation()"><button class=x onclick="modal='';render()">✕</button>${modal}</div></div>` : ''}`;

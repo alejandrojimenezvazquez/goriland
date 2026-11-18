@@ -187,9 +187,9 @@ function tgl(id) {
 }
 
 /**
- * Equipo de F1 con su logo y nombre, en una línea.
+ * Equipo de F1 con su logo y nombre, en una línea (en el móvil se oculta el nombre, ver .ttn).
  */
-const tt = k => k ? `<span style="display:inline-flex;align-items:center;gap:6px">${tl(k, 20)}${tn(k)}</span>` : '';
+const tt = k => k ? `<span title="${tn(k)}" style="display:inline-flex;align-items:center;gap:6px">${tl(k, 20)}<span class=ttn>${tn(k)}</span></span>` : '';
 
 /**
  * Se ejecuta si un logo no existe en Storage: lo recuerda y lo sustituye por su alternativa (data-fb) o lo quita.
